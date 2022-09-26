@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div class="headerTop">
+                <h2>這裡是Sunnacky 的小窩</h2>
+            </div>
+            <div class="headBottom">
+                <nav>
+                    <a href="javascript:;">加密字串</a>
+                    <a href="javascript:;" onclick="sayHello()">說你好</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sayHello(){
+            $.ajax({
+                url: 'http://localhost:8080/api/hello',
+                data: JSON.stringify({a:100, b:200}),
+                type: 'POST',
+                contentType: 'application/json; charset=UTF-8',
+                success: function(data){
+                    alert(data);
+                },
+                async: false
+            });
+        }
+    </script>
+</body>
+
+</html>
