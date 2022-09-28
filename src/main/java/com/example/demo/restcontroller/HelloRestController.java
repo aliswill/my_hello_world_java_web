@@ -15,22 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloRestController {
 
 	@RequestMapping("/hello")
-	@CrossOrigin
 	public ResponseEntity<String> hello(){					
 		return new ResponseEntity<>("OK，我說了你好", HttpStatus.OK);
 	}
 	
 	@RequestMapping("/hello2")
 	public String hello2(){					
-		return "hello222";//回傳文字到頁面上?
+		return "hello222";//回傳文字到頁面上? => yes，因為類別註解是@RestController，@RestController 為 @Controller 與 @ResponseBody 的複合註解
 	}
 	
-	@RequestMapping("/hello3")
-	//@ResponseBody
-	public String hello3(){					
-		return "hello3";//
-	}
 
-
-	
 }
