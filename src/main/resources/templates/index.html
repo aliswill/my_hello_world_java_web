@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
             <div class="headBottom">
                 <nav>
                     <a href="javascript:;">加密字串</a>
-
+                    <a href="sunnyhome">加密字串</a>
                     <a href="javascript:;" onclick="sayHello()">說你好</a>
                 </nav>
             </div>
@@ -25,8 +25,10 @@
     </div>
     <script>
         function sayHello(){
+            
+            var url = "/api/hello";
             $.ajax({
-                url: 'http://localhost:8080/api/hello',
+                url: url,
                 data: JSON.stringify({a:100, b:200}),
                 type: 'POST',
                 contentType: 'application/json; charset=UTF-8',

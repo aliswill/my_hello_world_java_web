@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StartController {
 
-	@RequestMapping("/")
+	@RequestMapping("/sunnyhome")
 	public String getHone() {
 		return "sunny/sunnyhome";
 	}
