@@ -1,0 +1,18 @@
+player:
+ name: Jacky
+ game: 
+   game_name: 戰意
+   game_type: 多人即時連線戰鬥   
+ interests: [睡覺,寫程式,神遊]
+ age: 3
+ 
+ 
+#spring:
+#  mvc:
+#   static-path-pattern: /myres/** 
+   #修改靜態資源預設目錄 原本預設 /**，但我可加上前綴，用來分類res目錄下的靜態資源請求，之後用網頁訪問該資源，路徑為"當前像目+/res/+資源名"
+   #同時也會改掉首頁路徑，變成http://localhost:8080/myres/index.html，否則無法訪問
+
+#  web:
+#   resources:
+#    static-locations: [classpath:/my_static_res/] #classpath為類路徑，設定後靜態資源必須存放在指定名稱資料夾
