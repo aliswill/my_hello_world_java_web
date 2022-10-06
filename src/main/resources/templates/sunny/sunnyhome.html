@@ -12,9 +12,9 @@
 <div>
 <h2 class="logintitle">登入</h2>
 </div>
-
-
-<form action="/afterlogin">
+<p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+<p th:text=${er_msg} th:if="${not #strings.isEmpty(er_msg)}"></p>
+<form action="/afterlogin" method="post">
     帳號<input type="text" class="formtext" name="useraccount">
     密碼<input type="text" class="formtext" name="userpassword">
     <input type="submit" onclick="pressed()" value="送出">
