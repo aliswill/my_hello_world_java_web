@@ -1,0 +1,29 @@
+#header{
+	
+}
+
+.headerTop h2{
+	background: #eaeaea;
+	
+  	height: 100px;
+  	margin: 0 auto;
+  	text-align:center;
+  	line-height: 100px;
+}
+
+.top_nav{
+	display:flex;
+	background-color: black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+}
+
+.nav_item{
+	color:white;
+	padding:10px;
+	font-size: 24px;
+	text-decoration:none;
+}

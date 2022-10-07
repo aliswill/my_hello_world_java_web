@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    
 </head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<nav class="top_nav" th:fragment="top_nav">
+	<a class="nav_item" href="emp/emp_list">員工資料庫</a>
+	<a class="nav_item" href="">項目2</a>
+	<a class="nav_item" href="">項目3</a>
+</nav>
 <body>
     <div id="wrapper">
         <div id="header">
@@ -17,7 +23,6 @@
             <div class="headBottom">
                 <nav>
                     <a href="javascript:;">加密字串</a>
-                    <a >加密字串</a>
                     <a href="javascript:;" onclick="sayHello()">說你好</a>
                     <h5>胖胖棋</h5>
                 </nav>

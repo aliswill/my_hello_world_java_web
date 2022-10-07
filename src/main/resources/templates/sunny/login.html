@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>登入頁</title>
-    <base href="/javascript/123">
     <link rel="stylesheet" href="css/sunny/login.css">
     <script type="text/javascript" src="javascript/login.js"></script>
 </head>
@@ -14,7 +13,7 @@
 </div>
 <p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 <p th:text=${er_msg} th:if="${not #strings.isEmpty(er_msg)}"></p>
-<form action="/toMain" method="post">
+<form action="/login" method="post">
     帳號<input type="text" class="formtext" name="useraccount">
     密碼<input type="text" class="formtext" name="userpassword">
     <input type="submit" onclick="pressed()" value="送出">

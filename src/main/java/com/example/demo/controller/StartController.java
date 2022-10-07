@@ -27,7 +27,7 @@ public class StartController {
 		return "sunny/login";
 	}
 	
-	@PostMapping("/toMain")
+	@PostMapping("/login")
 	public String login(@RequestParam("useraccount") String useraccount,@RequestParam("userpassword") String userpassword,Map<String,String> map,HttpSession session) {
 		//Map<String,String> map = new HashMap<>();
 		if(useraccount.equals("sunny")&& userpassword!=null) {
