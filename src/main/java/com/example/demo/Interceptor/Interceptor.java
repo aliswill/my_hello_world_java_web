@@ -18,12 +18,10 @@ public class Interceptor implements HandlerInterceptor {
 			throws Exception {
 		// TODO Auto-generated method stub
 		Object loginuser = request.getSession().getAttribute("loginUser");
-		System.out.println("////");
-		System.out.println(request.getSession().getAttribute("loginUser"));
 		//未登入，回到登入頁面
 		if(loginuser==null) {
 			request.setAttribute("msg", "使用者尚未登入");
-			request.getRequestDispatcher("/sunnyhome").forward(request, response);
+			request.getRequestDispatcher("/").forward(request, response);
 			return false;
 		}
 		//已登入

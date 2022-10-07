@@ -1,10 +1,4 @@
-player:
- name: Jacky
- game: 
-   game_name: 戰意
-   game_type: 多人即時連線戰鬥   
- interests: [睡覺,寫程式,神遊]
- age: 3
+
  
  
 #spring:

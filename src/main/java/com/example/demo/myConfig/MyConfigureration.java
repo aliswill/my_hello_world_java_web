@@ -14,8 +14,8 @@ public class MyConfigureration implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		//頁面路徑跟靜態資原路徑都是解析的那個，不管是用thymeleaf解析或原使靜態資原路徑
-		registry.addInterceptor(new Interceptor()).addPathPatterns("/**").excludePathPatterns("/","/sunnyhome","css/**","javascript/**","/afterlogin");
-		//要攔的是網址不是路徑??
+		registry.addInterceptor(new Interceptor()).addPathPatterns("/**").excludePathPatterns("/","/toMain","css/**","javascript/**");
+		//要攔的是網址不是路徑!!所以執行登入檢查對應的那個網址不能攔
 		
 	}
 

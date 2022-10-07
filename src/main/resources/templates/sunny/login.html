@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="utf-8">
-		<title>使用者登入了</title>
-	</head>
-	<body>
-		<p>你登入了!</p>
-		<p>使用者名稱:</p><p th:text=${useraccount}></p>		
-	</body>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登入頁</title>
+    <base href="/javascript/123">
+    <link rel="stylesheet" href="css/sunny/login.css">
+    <script type="text/javascript" src="javascript/login.js"></script>
+</head>
+<body>
+
+<div>
+<h2 class="logintitle">登入</h2>
+</div>
+<p th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+<p th:text=${er_msg} th:if="${not #strings.isEmpty(er_msg)}"></p>
+<form action="/toMain" method="post">
+    帳號<input type="text" class="formtext" name="useraccount">
+    密碼<input type="text" class="formtext" name="userpassword">
+    <input type="submit" onclick="pressed()" value="送出">
+    
+</form>
+<p>測試123</p>
+</body>
 </html>
