@@ -35,6 +35,7 @@ public class StartController {
 			return "sunny/login";
 			//return "/afterlogin";
 			//return "redirect:/ToLogin";//登入成功需防止使用者刷新頁面，使表單重複提交，需要重定向，但會丟失傳輸資訊
+			//用重定向要如何保留我的session?這樣能通過攔截器嗎?
 		}
 		else {
 			map.put("er_msg", "登入失敗");
