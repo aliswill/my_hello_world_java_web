@@ -33,7 +33,7 @@ public class EmployeeRepository {
 	
 	public List<Employee> getEmployeeList(){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id,name,position,pay,on_board_date FROM employee");
+		sql.append("SELECT id,name,position,pay,on_board_date FROM employee order by id");
 		RowMapper<Employee> rowmapper = new BeanPropertyRowMapper<>(Employee.class);
 		List<Employee> allEmployee = jdbctemplate.query(sql.toString(), rowmapper);
 		
@@ -42,12 +42,20 @@ public class EmployeeRepository {
 	
 	public Employee getEmployeeById(String emp_id){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT name,position,pay,on_board_date FROM employee where id =?");
+		sql.append("SELECT id,name,position,pay,on_board_date FROM employee where id =?");
 		RowMapper<Employee> rowmapper = new BeanPropertyRowMapper<>(Employee.class);
-		Employee employee = jdbctemplate.queryForObject(emp_id, rowmapper, emp_id);
+		Employee employee = jdbctemplate.queryForObject(sql.toString(), rowmapper, emp_id);
 				//(sql.toString(), rowmapper);
-		System.out.println(employee.getName());
+		System.out.println(employee.getOn_board_date());
 		return employee;
+	}
+	
+	public void deleteEmployeeById(String emp_id){
+		StringBuilder sql = new StringBuilder();
+		sql.append("delete FROM employee where id =?");
+		RowMapper<Employee> rowmapper = new BeanPropertyRowMapper<>(Employee.class);
+		jdbctemplate.update(sql.toString(), emp_id);
+		System.out.println("成功刪除員工"+emp_id);				
 	}
 	
 	public void addEmployee(String name,String position,Integer pay,Date on_board_date) {
@@ -76,6 +84,24 @@ public class EmployeeRepository {
 			}
 		});
 		System.out.println("資料插入成功!");
+	}
+	
+	public void alterEmployee(String id,String name,String position,Integer pay,Date on_board_date) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("update employee set name=?,position=?,pay=?,on_board_date=? where id=? ");
+		jdbctemplate.update(sql.toString(), new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1,name );
+				ps.setString(2,position );
+				ps.setInt(3,pay );
+				ps.setDate(4,on_board_date );
+				ps.setString(5,id );
+				
+			}
+		});
+		System.out.println("資料修改成功!"+id);
 	}
 	
 }

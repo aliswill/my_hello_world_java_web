@@ -26,14 +26,18 @@
 	            <td>到職日</td>
         	</tr>	
         	</br>
-        	<tr th:each="employee:${employees}">
-	            <td th:text="${employee.id}"></td>
-	            <td th:text="${employee.name}"></td>
-	            <td th:text="${employee.position}"></td>
-	            <td th:text="${employee.pay}"></td>
-	            <td th:text="${#dates.format(employee.on_board_date, 'yyyy/MM/dd')}"></td>
-	            <td><button th:id="${employee.id}+_alter_btn" class="alter_btn">修改</td>	           
-        	</tr>
+
+	        	<tr th:each="employee:${employees}">	        		
+		            <td th:text="${employee.id}"></td>
+		            <td th:text="${employee.name}"></td>
+		            <td th:text="${employee.position}"></td>
+		            <td th:text="${employee.pay}"></td>
+		            <td th:text="${#dates.format(employee.on_board_date, 'yyyy/MM/dd')}"></td>
+		            <!-- <td><input type="submit" th:id="${employee.id}+_alter_btn" class="alter_btn">修改</td> -->
+		            <td><a class="alter_btn" th:href="@{/toAlterEmployee/}+${employee.id}">修改</a></td>	 
+		            <td><a class="delete_btn" th:href="@{/deleteEmployee/}+${employee.id}">刪除</a></td>          
+	        	</tr>
+        	
         	</table>
         	
         		

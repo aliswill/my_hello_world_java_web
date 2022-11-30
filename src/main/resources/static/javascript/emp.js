@@ -30,6 +30,7 @@ $(document).ready(function(){
 		});
 	})
 	
+	/* 用ajax不能實現頁面跳轉
 	$(".alter_btn").click(function(){		
 		var emp_id = this.id.split('_')[0];
 		
@@ -45,6 +46,7 @@ $(document).ready(function(){
 		});
 		
 	})
+	*/
 	
 
 })
