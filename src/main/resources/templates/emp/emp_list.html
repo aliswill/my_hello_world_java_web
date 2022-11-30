@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>員工資料表</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="/javascript/emp.js"></script>
+    <!--href前面有一槓帶表決對路徑，從網站根目錄開始，否則是相對路徑，會變成http://localhost:8080/emp/css/main.css，所以導入th:replace還是要導cs? -->
+    
+</head>
+	<nav th:replace="~{main::top_nav}"></nav>
+	<body>
+		這是員工資料表
+		<div>
+			<form action="/getAllEmployees" method="post">
+			  	<input type="submit" value="查詢所有員工(controller)">
+			</form>	
+		</div>	
+		<div>
+			<button id="getAllEmp_btn">查詢所有員工(restController)</button>
+		</div>
+		
+		<table id="getAllEmpResult" style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+
+		</table>
+		
+		<div>
+			<form action="/toAddEmployee" method="post">
+			  	<input type="submit" value="新增員工(controller)">
+			</form>		
+		</div>
+	</body>
+</html>

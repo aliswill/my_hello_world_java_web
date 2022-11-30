@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>員工資料表</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="/javascript/emp.js"></script>
+    <!--href前面有一槓帶表決對路徑，從網站根目錄開始，否則是相對路徑，會變成http://localhost:8080/emp/css/main.css，所以導入th:replace還是要導cs? -->
+    
+</head>
+	<nav th:replace="~{main::top_nav}"></nav>
+	<body>
+		
+		<div>
+			
+        	<table  style="border:3px #cccccc solid;" cellpadding="10" border='1'>
+        	<tr>
+	            <td>員工ID</td>
+	            <td>員工姓名</td>
+	            <td>職稱</td>
+	            <td>薪資</td>
+	            <td>到職日</td>
+        	</tr>	
+        	</br>
+        	<tr th:each="employee:${employees}">
+	            <td th:text="${employee.id}"></td>
+	            <td th:text="${employee.name}"></td>
+	            <td th:text="${employee.position}"></td>
+	            <td th:text="${employee.pay}"></td>
+	            <td th:text="${#dates.format(employee.on_board_date, 'yyyy/MM/dd')}"></td>
+	            <td><button th:id="${employee.id}+_alter_btn" class="alter_btn">修改</td>	           
+        	</tr>
+        	</table>
+        	
+        		
+		</div>
+	</body>
+</html>
