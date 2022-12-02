@@ -33,7 +33,7 @@ public class EmployeeController {
 		//之後也要試試看使用restController查詢並顯示
 		
 		List<Employee> employees = employeerepository.getEmployeeList();
-		model.addAttribute("testEmployeeRepository", employeerepository.testEmployeeRepository());
+		//model.addAttribute("testEmployeeRepository", employeerepository.testEmployeeRepository());
 		model.addAttribute("employees",employees);
 		model.addAttribute("test","model存取成功");
 		
@@ -74,7 +74,6 @@ public class EmployeeController {
 	@RequestMapping(value="/alterEmployee",method=RequestMethod.POST)
 	public String alterEmployee(String id,String name,String position,Integer pay,Date on_board_date) {
 		employeerepository.alterEmployee(id, name, position, pay, on_board_date);
-		System.out.println("alterEmployee controller");
 		return "emp/emp_list";
 	}
 }

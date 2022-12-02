@@ -46,7 +46,7 @@ public class EmployeeRepository {
 		RowMapper<Employee> rowmapper = new BeanPropertyRowMapper<>(Employee.class);
 		Employee employee = jdbctemplate.queryForObject(sql.toString(), rowmapper, emp_id);
 				//(sql.toString(), rowmapper);
-		System.out.println(employee.getOn_board_date());
+		
 		return employee;
 	}
 	
@@ -101,7 +101,7 @@ public class EmployeeRepository {
 				
 			}
 		});
-		System.out.println("資料修改成功!"+id);
+		System.out.println("資料修改成功!");
 	}
 	
 }

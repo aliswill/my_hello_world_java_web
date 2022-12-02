@@ -13,6 +13,7 @@
 
 .top_nav{
 	display:flex;
+	
 	background-color: black;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -26,6 +27,13 @@
 	padding:10px;
 	font-size: 24px;
 	text-decoration:none;
+}
+.nav_left_item{
+	
+}
+.nav_right_item{
+	margin-left:auto;
+	
 }
 
 .alter_btn{
