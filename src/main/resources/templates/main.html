@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/main.css">
-    
+<head th:insert="~{head::myhead}"></head>
 </head>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<div th:insert="~{head::myscript}"></div>
 <nav class="top_nav" th:fragment="top_nav">	
 	<div class="nav_left_item">
 		<a class="nav_item" href="/emp/emp_list">員工資料庫</a><!-- 有斜線是絕對路徑，沒斜線的話再連一次會變emp/emp/emplist;然後部屬會多一個應用程式路徑，應該抓一個baseUrl-->

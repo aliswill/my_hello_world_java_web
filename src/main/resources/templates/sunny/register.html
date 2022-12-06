@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<head th:insert="~{head::myhead}"></head>
+</head>
+
+<div th:insert="~{head::myscript}"></div>
+
+
+	<body>
+	
+		<div class="StraightMylayout">
+		
+			<div class="MylayoutSon">
+				<h2 th:text="${msg}">註冊表單</h2>
+				<br/>
+			</div>
+			<div class="MylayoutSon">
+				<form th:action="@{/register}"  method="post">				
+				    <p>帳號</p>
+					<input type='text' name="useraccount" required="required" >
+					<p>密碼</p>
+					<input type='password' name="userpassword" required="required">
+					<p>信箱</p>
+					<input type='email' name="email" >
+					
+					<input type='submit' value="送出">
+				</form>
+			</div>
+			<div class="MylayoutSon">
+				<a th:href="@{/}">回到登入頁面</a>
+			</div>
+			
+		</div>
+	</body>
+</html>

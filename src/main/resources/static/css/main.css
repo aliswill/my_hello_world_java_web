@@ -2,6 +2,29 @@
 	
 }
 
+body{
+	min-height: 700px;
+}
+
+.mylayout{
+	min-height: 700px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.StraightMylayout{
+	display:flex;
+	flex-direction:column;
+	min-height: 700px;	
+	justify-content:center;
+	align-items:center;
+}
+
+.MylayoutSon{
+	margin:15px;
+}
+
 .headerTop h2{
 	background: #eaeaea;
 	
