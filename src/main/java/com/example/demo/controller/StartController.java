@@ -5,16 +5,20 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.repository.UserRepository;
+
 @Controller
 public class StartController {
 	
-
+	@Autowired
+	UserRepository userrepository;
 	
 	@RequestMapping("/")
 	public String getHome() {
@@ -29,8 +33,8 @@ public class StartController {
 	
 	@PostMapping("/login")
 	public String login(@RequestParam("useraccount") String useraccount,@RequestParam("userpassword") String userpassword,Map<String,String> map,HttpSession session) {
-		//Map<String,String> map = new HashMap<>();
-		if(useraccount.equals("sunny")&& userpassword!=null) {
+		
+		if(userrepository.checkAcPd(useraccount, userpassword)) {
 			session.setAttribute("loginUser", useraccount);
 			map.put("useraccount", useraccount);
 			map.put("userpassword", userpassword);
@@ -40,7 +44,7 @@ public class StartController {
 			//用重定向要如何保留我的session?這樣能通過攔截器嗎?
 		}
 		else {
-			map.put("er_msg", "登入失敗");
+			map.put("er_msg", "登入失敗，帳號或密碼錯誤");
 			return "sunny/login";
 		}
 		
