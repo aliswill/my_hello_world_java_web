@@ -11,15 +11,15 @@
 		<div>
 			<form th:action="${employee!=null}?@{/alterEmployee}:@{/addEmployee}"  method="post">
 			<!-- 注意 如果加了參數去接修改表單使用的值 那新增這邊要處理 不然會錯誤 -->
-				<input type='text' name="id" th:value="${employee!=null}?${employee.id}" hidden >
+				<input type='text' name="id"  th:value="${employee!=null}?${employee.id}" hidden >
 			    <p name="name">名稱</p>
-				<input type='text' name="name" th:value="${employee!=null}?${employee.name}">
+				<input type='text' name="name"  required="required" th:value="${employee!=null}?${employee.name}">
 				<p >職位</p>
-				<input type='text' name="position" th:value="${employee!=null}?${employee.position}">
+				<input type='text' name="position"  required="required" th:value="${employee!=null}?${employee.position}">
 				<p>薪資</p>
-				<input type='text' name="pay" th:value="${employee!=null}?${employee.pay}">
+				<input type='text' name="pay"  required="required" th:value="${employee!=null}?${employee.pay}">
 				<p>到職日</p>
-				<input type='date' name="on_board_date" th:value="${employee!=null}?${#dates.format(employee.on_board_date,'yyyy-MM-dd')}">
+				<input type='date' name="on_board_date"  required="required" th:value="${employee!=null}?${#dates.format(employee.on_board_date,'yyyy-MM-dd')}">
 				<input type='submit' value="送出">
 			</form>
 		</div>

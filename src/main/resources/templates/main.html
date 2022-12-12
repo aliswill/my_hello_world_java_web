@@ -9,8 +9,8 @@
 <nav class="top_nav" th:fragment="top_nav">	
 	<div class="nav_left_item">
 		<a class="nav_item" href="/emp/emp_list">員工資料庫</a><!-- 有斜線是絕對路徑，沒斜線的話再連一次會變emp/emp/emplist;然後部屬會多一個應用程式路徑，應該抓一個baseUrl-->
-		<a class="nav_item" href="">項目2</a>
-		<a class="nav_item" href="">項目3</a>
+		<a class="nav_item" href="/file_control">文件管理</a>
+		<a class="nav_item" href="/emp/emp_list">項目3</a>
 	</div>
 	<div class="nav_right_item">
 		<!-- <a class="nav_item" th:text="${session.loginUser}">使用者帳號</a> -->
@@ -19,9 +19,9 @@
 		    下拉按鈕
 		  </button>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		    <a class="dropdown-item" href="/">Action</a>
-		    <a class="dropdown-item" href="/">Another action</a>
-		    <a class="dropdown-item" href="/">Something else here</a>
+		    <a class="dropdown-item" href="/">管理帳號</a>
+		    <a class="dropdown-item" href="/logout">登出</a>
+		    
 		  </div>
 		</div>
 		

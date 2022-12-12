@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:insert="~{head::myhead}"></head>
+</head>
+<div th:insert="~{head::myscript}"></div>
+<script type="text/javascript" language="JavaScript" src="/javascript/file.js"></script>
+    <!--href前面有一槓帶表決對路徑，從網站根目錄開始，否則是相對路徑，會變成http://localhost:8080/emp/css/main.css，所以導入th:replace還是要導cs? -->
+    
+	<nav th:replace="~{main::top_nav}"></nav>
+	<body>
+		<h3>這是檔案管理頁面</h3>
+		<button class="download_btn" id="download_txt">下載文字檔</button>
+
+	</body>
+</html>
