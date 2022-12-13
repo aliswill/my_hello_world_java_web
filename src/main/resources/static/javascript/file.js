@@ -3,7 +3,7 @@
  */
  
  $(document).ready(function(){
-	$("#download_txt").click(function(){
+/*	$("#download_txt").click(function(){
 		$.ajax({
 			url:"/downloadTxt",
 			type:"POST",
@@ -13,5 +13,5 @@
 			}
 			
 		});
-	})
+	})*/
 })

@@ -10,7 +10,20 @@
 	<nav th:replace="~{main::top_nav}"></nav>
 	<body>
 		<h3>這是檔案管理頁面</h3>
-		<button class="download_btn" id="download_txt">下載文字檔</button>
+		<!-- 為何用button搭配ajax無法下載檔案?用form就可以? -->
+		<!--<button class="download_btn" id="download_txt">下載文字檔</button>-->
+		
+		<form action="/downloadTxt" method="post">
+				<input type="text" name="filename"  value="file1" hidden/>
+				<input type="submit" value="下載file1"/>
+		</form>
+		
+		<form action="/uploadFile" enctype="multipart/form-data" method="post">
+				<input type="file" name="uploadfile" multiple />
+				<input type="submit" value="上傳"/>
+		</form>
+		
+		<p th:text="${session.uploadmsg}"></p>
 
 	</body>
 </html>
