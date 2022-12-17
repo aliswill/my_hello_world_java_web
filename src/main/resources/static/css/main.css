@@ -37,7 +37,7 @@ body{
 .top_nav{
 	display:flex;
 	
-	background-color: black;
+	background-color:#FFB326;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 20px;
@@ -50,7 +50,17 @@ body{
 	padding:10px;
 	font-size: 24px;
 	text-decoration:none;
+	
 }
+
+.mybody{
+	padding:20px;
+	margin:20px;
+}
+
+.nav_item:hover {color:#A86E00};
+
+
 .nav_left_item{
 	
 }

@@ -9,21 +9,31 @@
     
 	<nav th:replace="~{main::top_nav}"></nav>
 	<body>
-		<h3>這是檔案管理頁面</h3>
-		<!-- 為何用button搭配ajax無法下載檔案?用form就可以? -->
-		<!--<button class="download_btn" id="download_txt">下載文字檔</button>-->
-		
-		<form action="/downloadTxt" method="post">
-				<input type="text" name="filename"  value="file1" hidden/>
-				<input type="submit" value="下載file1"/>
-		</form>
-		
-		<form action="/uploadFile" enctype="multipart/form-data" method="post">
-				<input type="file" name="uploadfile" multiple />
-				<input type="submit" value="上傳"/>
-		</form>
-		
-		<p th:text="${session.uploadmsg}"></p>
-
+		<div class="mybody">
+			<h3>這是檔案管理頁面</h3>
+			<!-- 為何用button搭配ajax無法下載檔案?用form就可以? -->
+			<!--<button class="download_btn" id="download_txt">下載文字檔</button>-->
+			
+			<form action="/downloadTxt" method="post">
+					<input type="text" name="filename"  value="file1" hidden/>
+					<input type="submit" value="下載file1"/>
+			</form>
+			
+			<form action="/uploadFile" enctype="multipart/form-data" method="post">
+					<input type="file" name="uploadfiles" multiple required="required" />
+					<input type="submit" value="上傳"/>
+			</form>
+			
+			<p th:text="${session.uploadmsg}"></p>
+	
+			<form id="files_form" action="/deleteFiles" method="post">
+				<p>您的資料夾內容：</p>
+				<!-- 為何這行沒用?是否只能使用在控制器MODEL夾帶的參數，不可使用AJAX返回值 --><p th:each="file:${files}"></p>
+				<div id="files_form_ckeckbox">
+				
+				</div>
+				<input type="submit" id="butten" value="刪除" hide>
+			</form>
+		</div>
 	</body>
 </html>
