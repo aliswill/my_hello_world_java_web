@@ -15,6 +15,7 @@
 					$("#files_form_ckeckbox").append('<input type="checkbox" name="del_files"' +'value="'+file+'"'+'id="'+file+'"/>');
 					$("#files_form_ckeckbox").append('<label for="'+file+'">'+file+'</label></br>');
 				})
+				
 					//$("#files_form").append('<input type="submit" id="butten" value="刪除">');
 			}			
 		});

@@ -20,10 +20,10 @@ public class RegisterController {
 	
 	@RequestMapping("/toRegister")//進入註冊頁面
 	public String toRegister() {
-		return "sunny/register";
+		return "/sunny/register";
 	}
 	
-	@RequestMapping(value="/register",method=RequestMethod.POST)//進入註冊頁面
+	@RequestMapping(value="/register",method=RequestMethod.POST)//註冊
 	public String register(@RequestParam String useraccount,@RequestParam String userpassword,@RequestParam String email,Model model) {
 		//註冊方法
 		if(userrepository.accountExistYn(useraccount)) {
@@ -32,6 +32,6 @@ public class RegisterController {
 			userrepository.addUser(useraccount, userpassword, email, "一般權限");
 			model.addAttribute("msg", "註冊成功!");
 		}
-		return "sunny/register";
+		return "/sunny/register";
 	}
 }

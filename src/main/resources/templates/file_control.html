@@ -32,7 +32,8 @@
 				<div id="files_form_ckeckbox">
 				
 				</div>
-				<input type="submit" id="butten" value="刪除" hide>
+				
+				<input th:if="${files_num}>0" type="submit" id="butten" value="刪除" >
 			</form>
 		</div>
 	</body>

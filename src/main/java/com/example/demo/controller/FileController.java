@@ -33,8 +33,17 @@ public class FileController {
 
 	private String upload_path = "D:\\hello_world_upload";
 	
+	
+	
 	@GetMapping("/file_control")
-	public String file() {
+	public String file(HttpSession session,Model model) {
+		String useraccount = (String) session.getAttribute("loginUser");
+		File userfolder = new File(upload_path+"\\"+useraccount);
+		if(!userfolder.exists()) {
+			return null;
+		}
+		int files_num = userfolder.list().length;
+		model.addAttribute("files_num",files_num);
 		return "file_control";
 	}
 	
@@ -113,8 +122,9 @@ public class FileController {
 			uploadfile.transferTo(new File(dir.getAbsolutePath()+File.separator+finalfilename));
 			System.out.println("上傳成功，將文件上傳至"+dir.getAbsolutePath()+File.separator+finalfilename);
 			session.setAttribute("uploadmsg","上傳成功!您最後一次上傳的檔案為："+filename);
-
+			
 		}				
+		//model.addAttribute("files_num",uploadfiles.length);
 		return "redirect:/file_control";
 	}
 }
