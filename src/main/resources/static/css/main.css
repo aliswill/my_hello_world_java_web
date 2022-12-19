@@ -21,9 +21,27 @@ body{
 	align-items:center;
 }
 
-.MylayoutSon{
-	margin:15px;
+.StraightMylayoutSon{
+	
+	display:flex;
+	min-height: 150px;	
+	min-width: 350px;	
+	flex-direction:column;
+	justify-content:center;
+	border-width:2px;
+	border-style:dashed;
+	border-color:#FFAC55;
+	padding:2px;
+	margin:2px;
+	//align-items:center; 使文字靠左
+
 }
+
+.MylayoutSon{
+	margin:10px;
+}
+
+
 
 .headerTop h2{
 	background: #eaeaea;

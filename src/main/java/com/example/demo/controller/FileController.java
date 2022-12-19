@@ -40,7 +40,9 @@ public class FileController {
 		String useraccount = (String) session.getAttribute("loginUser");
 		File userfolder = new File(upload_path+"\\"+useraccount);
 		if(!userfolder.exists()) {
-			return null;
+			//return null;
+			model.addAttribute("files_num",0);
+			return "file_control";
 		}
 		int files_num = userfolder.list().length;
 		model.addAttribute("files_num",files_num);
