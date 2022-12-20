@@ -1,17 +1,23 @@
 package com.example.demo.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.bean.Message;
 import com.example.demo.repository.UserRepository;
 
 @Controller
@@ -30,6 +36,15 @@ public class StartController {
 	public String getToLogin() {
 		return "main";
 	}
+	
+	
+	@GetMapping("/storeAccount") //登入後會跳轉到主頁(這個主頁不在主條目所以不會經常進入)
+	public ResponseEntity<Object> storeAccount(HttpSession session){
+		String user_account = 	(String) session.getAttribute("loginUser");
+		//分清楚 何時存到Model 何時回傳ResponseEntity
+		return new ResponseEntity<>(user_account, HttpStatus.OK);
+	}
+	
 	
 	@PostMapping("/login")
 	public String login(@RequestParam("useraccount") String useraccount,@RequestParam("userpassword") String userpassword,Map<String,String> map,HttpSession session) {

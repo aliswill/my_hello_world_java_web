@@ -10,6 +10,7 @@
 <div th:insert="~{head::myscript}"></div>
 <script type="text/javascript" src="javascript/login.js"></script>
 
+
 	<body>
 		<!--
 		<div>
@@ -55,8 +56,8 @@
 			    </div>
 			  </div>
 			
-			  <!-- Submit button -->
-			  <input type="submit" class="btn btn-primary btn-block mb-4" value="送出"></binput>
+			  <!-- Submit button 試著在發送表單時呼叫ajax 調用方法來把使用者帳號同時存入 SessionStorage-->
+			  <input id="login_btn" type="submit" class="btn btn-primary btn-block mb-4" value="送出"></input>
 			
 			  <!-- Register buttons -->
 			  <div class="text-center">

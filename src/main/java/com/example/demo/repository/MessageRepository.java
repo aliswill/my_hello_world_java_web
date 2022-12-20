@@ -42,6 +42,26 @@ public class MessageRepository {
 		return allMessage;
 	}
 	
+	public boolean checkAccount(Integer message_id,String user_account) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select user_account from message where message_id = ?");
+		String message_user_account;		
+		try {
+			message_user_account = jdbctemplate.queryForObject(sql.toString(), String.class);
+			return true;
+		}catch(DataAccessException e) {//查不到的話
+			return false;
+		}
+	}
+	
+	public void deleteMessageById(Integer message_id){
+		StringBuilder sql = new StringBuilder();
+		sql.append("delete FROM message where message_id =?");
+		RowMapper<Message> rowmapper = new BeanPropertyRowMapper<>(Message.class);
+		jdbctemplate.update(sql.toString(), message_id);
+		System.out.println("成功刪除留言"+message_id);				
+	}
+	
 	//暱稱跟內容來自FORM，時間由程式抓取，ID由程式產生，帳號由SESSION抓
 	public void addMessge(String nickname,String message,HttpSession session) {
 		StringBuilder sql = new StringBuilder();

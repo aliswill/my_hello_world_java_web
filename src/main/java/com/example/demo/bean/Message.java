@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class Message {
 
 	private String nick_name;
-	private String useraccount;
+	private String user_account;
 	private String message;
 	private Date message_time;
 	private Integer message_id;
@@ -21,14 +21,14 @@ public class Message {
 	public String getNick_name() {
 		return nick_name;
 	}
-	public void setNick_name(String nick_name) {
+	public void setNick_name(String nick_name) {//get set方法名稱很重要，行參會抓
 		this.nick_name = nick_name;
 	}
-	public String getUseraccount() {
-		return useraccount;
+	public String getUser_account() {
+		return user_account;
 	}
-	public void setUseraccount(String useraccount) {
-		this.useraccount = useraccount;
+	public void setUser_account(String user_account) {
+		this.user_account = user_account;
 	}
 	public String getMessage() {
 		return message;
