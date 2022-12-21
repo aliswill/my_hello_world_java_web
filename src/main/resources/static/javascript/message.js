@@ -15,6 +15,9 @@
 					var nick_name = this.nick_name;
 					var message = this.message;
 					var message_time = this.message_time;
+					//var time = new Date(message_time);
+					//message_time = time.format('yyyy-MM-dd hh:mm:ss');
+					
 					var message_id = this.message_id;
 					var user_account = this.user_account;
 					

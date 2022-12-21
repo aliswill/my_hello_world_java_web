@@ -1,6 +1,8 @@
 package com.example.demo.bean;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,7 @@ public class Message {
 	private String nick_name;
 	private String user_account;
 	private String message;
-	private Date message_time;
+	private Date message_time;//java.util的才能顯示到分鐘
 	private Integer message_id;
 	
 	
@@ -38,7 +40,14 @@ public class Message {
 	}
 	public Date getMessage_time() {
 		return message_time;
+		
 	}
+	
+//	public String getMessage_time() {
+//		SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+//		return ft.format(message_time);
+//		
+//	}//不行這樣 封裝會出問題
 	public void setMessage_time(Date message_time) {
 		this.message_time = message_time;
 	}
