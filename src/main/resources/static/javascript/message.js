@@ -15,6 +15,7 @@
 					var nick_name = this.nick_name;
 					var message = this.message;
 					var message_time = this.message_time;
+					//可用tyoeof查看類型 應該都是字串
 					//var time = new Date(message_time);
 					//message_time = time.format('yyyy-MM-dd hh:mm:ss');
 					

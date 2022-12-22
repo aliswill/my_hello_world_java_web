@@ -6,12 +6,15 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Component
 public class Message {
 
 	private String nick_name;
 	private String user_account;
 	private String message;
+	@JsonFormat(pattern="yyyy-MM-dd hh:mm") //這段
 	private Date message_time;//java.util的才能顯示到分鐘
 	private Integer message_id;
 	

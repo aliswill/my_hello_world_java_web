@@ -64,6 +64,7 @@ public class MessageRepository {
 	
 	//暱稱跟內容來自FORM，時間由程式抓取，ID由程式產生，帳號由SESSION抓
 	public void addMessge(String nickname,String message,HttpSession session) {
+		//還要加一段把把 \r\n 換成 <br/> 來處理無法順利換行問題
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select top (1) message_id from message order by message_id desc");
 		//RowMapper<Integer> rowmapper = new BeanPropertyRowMapper<>(Integer.class);
