@@ -2,7 +2,8 @@
  * 
  */
  $(document).ready(function(){
-	
+
+
 		
 		$.ajax({
 			url:"/getMessages",
@@ -21,16 +22,34 @@
 					
 					var message_id = this.message_id;
 					var user_account = this.user_account;
+					var like_num = this.like_num;
+					var like_yn = this.like_yn;
 					
 					//提交後會是提交鍵值對 name=value 所以name不能用成檔案名，所以複選框的提交結果會是 name=value1&value2
 					//不會允許不成對標籤，所以無法案預想的順序，若要先鍵一個標籤再以插入父類的方法，因為標籤都是ajax生成，似乎不可行?用live可以嗎?
 					//ajax動態生成的thymeleaf與法似乎不會被解析 th:if="${session.loginUser}== '+message_id+'"
 					
 					if(loginUser==user_account){
-						$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' ">刪除留言</a></div>');
+						if(loginUser==like_yn){
+							$("#message_board").append('<button id="test_'+message_id+'" class="test">測試按紐</button>');
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' ">刪除留言</a><br/><a href="/message/like/'+message_id+' ">收回讚</button><br/><span>讚:'+like_num+'</span></div>');
+						}else{
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' ">刪除留言</a><br/><a href="/message/like/'+message_id+' ">按讚</button><br/><span>讚:'+like_num+'</span></div>');
+						}
+						
 					}else{
-						$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div></div>');
+						if(loginUser==like_yn){
+							$("#message_board").append('<button id="test_'+message_id+'" class="test">測試按紐</button>');
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a href="/message/like/'+message_id+' ">收回讚</button><br/><span>讚:'+like_num+'</span></div>');	
+						}else
+						{
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a href="/message/like/'+message_id+' ">按讚</button><br/><span>讚:'+like_num+'</span></div>');	
+							}
+							
+						
 					}
+					
+					
 					//$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' ">刪除留言</a></div>');
 					$('#'+message_id).wrap('<div class="StraightMylayoutSon"></div>');
 					//$("#message_board").append('<p class="a">哈哈</p>');
@@ -41,6 +60,17 @@
 					//$("#files_form").append('<input type="submit" id="butten" value="刪除">');
 			}			
 		});
+		
+		$(".test").click(function(){
+			alert("111");
+			var message_id = $(this).attr("id");
+			alert(message_id);
+		});
+		
+		
+
+		
+		
 		
 })
 

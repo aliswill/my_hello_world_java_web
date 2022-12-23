@@ -17,9 +17,16 @@ public class Message {
 	@JsonFormat(pattern="yyyy-MM-dd hh:mm") //這段
 	private Date message_time;//java.util的才能顯示到分鐘
 	private Integer message_id;
+	private Integer like_num;//join來的 資料庫沒有 但沒關係
+	private String like_yn;
 	
-	
-	
+
+	public Integer getLike_num() {
+		return like_num;
+	}
+	public void setLike_num(Integer like_num) {
+		this.like_num = like_num;
+	}
 	public Message() {
 		super();
 	}
@@ -59,6 +66,12 @@ public class Message {
 	}
 	public void setMessage_id(Integer message_id) {
 		this.message_id = message_id;
+	}
+	public String getLike_yn() {
+		return like_yn;
+	}
+	public void setLike_yn(String like_yn) {
+		this.like_yn = like_yn;
 	}
 	
 	
