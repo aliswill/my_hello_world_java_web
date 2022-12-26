@@ -29,9 +29,10 @@ public class MessageLikeRepository {
 		StringBuilder sql = new StringBuilder();
 		sql.append("  SELECT count(user_account)"
 				+ "  FROM message_like"
-				+ "  WHERE and message_id = ?");
+				+ "  WHERE message_id = ?");
 		int like_num = 0;	
-		like_num = jdbctemplate.queryForObject(sql.toString(),Integer.class,message_id);
+		like_num = jdbctemplate.queryForObject(sql.toString(), Integer.class, message_id);
+
 		return like_num;
 	}
 	

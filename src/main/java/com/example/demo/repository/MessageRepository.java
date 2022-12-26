@@ -34,14 +34,14 @@ public class MessageRepository {
 	
 	
 	//記得把user_account改動態
-	public List<Message> getMessageList(){
+	public List<Message> getMessageList(String user_account){
 		StringBuilder sql = new StringBuilder();
 		sql.append("  SELECT nick_name,user_account,message,message_time,message_id\r\n"
 				+ "  ,isnull((select count(user_account) from message_like as b where message_id = a.message_id group by message_id),0) as like_num\r\n"
-				+ "  ,(select user_account from message_like as b where message_id = a.message_id and user_account = 'sunny')  as like_yn\r\n"
+				+ "  ,(select user_account from message_like as b where message_id = a.message_id and user_account = ?)  as like_yn\r\n"
 				+ "  FROM message as a order by message_id");
 		RowMapper<Message> rowmapper = new BeanPropertyRowMapper<>(Message.class);
-		List<Message> allMessage = jdbctemplate.query(sql.toString(), rowmapper);		
+		List<Message> allMessage = jdbctemplate.query(sql.toString() ,rowmapper,user_account);		
 		return allMessage;
 	}
 	

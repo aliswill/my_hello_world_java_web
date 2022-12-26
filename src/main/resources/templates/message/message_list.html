@@ -9,21 +9,22 @@
     
 	<nav th:replace="~{main::top_nav}"></nav>
 	<body>
-		<div class="mybody">
+		<div class="mybody " style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
 			<h3>這是留言板</h3>
 			<button id="111" class="test">測試按紐</button>
 			<!-- 為何用button搭配ajax無法下載檔案?用form就可以? -->
 			<!--<button class="download_btn" id="download_txt">下載文字檔</button>-->
 			
-			<form action="/addMessage" method="post" style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;">
-				<div id="message_board" class="StraightMylayout">
+			<form action="/addMessage" method="post" >
+				<div  class="StraightMylayout">
 					<div class="MylayoutSon">暱稱 <input type="text" name="nickname" required/></div>
 					
 					<div class="MylayoutSon"><textarea style="height:150px;width:300px" name="message" required></textarea></div>
-					<input class="MylayoutSon" type="submit" value="我要留言"/>
+					<input class="MylayoutSon" type="submit" value="我要留言"/> 
 				</div>
-			</form>
-		
+			</form> 
+				<div id="message_board" class="StraightMylayout">
+				</div>
 		</div>
 	</body>
 </html>

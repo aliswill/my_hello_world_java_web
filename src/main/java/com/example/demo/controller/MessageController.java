@@ -32,12 +32,24 @@ public class MessageController {
 		return "/message/message_list";
 	}
 	
-	@GetMapping("/message/like/{message_id}")
-	public String changeLike(HttpSession session,@PathVariable String message_id) {
+//	@GetMapping("/message/like/{message_id}")
+//	public String changeLike(HttpSession session,@PathVariable String message_id) {
+//		String user_account = (String) session.getAttribute("loginUser");
+//		messagelikerepository.changeLike(user_account, message_id);
+//		return "redirect:/ToMessage";
+//	}
+	
+	@ResponseBody //按讚然後返回讚數
+	@GetMapping("/message/getlike/{message_id}")
+	public ResponseEntity<Object> getLike(HttpSession session,@PathVariable String message_id) {
 		String user_account = (String) session.getAttribute("loginUser");
 		messagelikerepository.changeLike(user_account, message_id);
-		return "redirect:/ToMessage";
+		int like_num = messagelikerepository.getLikeNum(message_id);
+		boolean already_like_yn = messagelikerepository.alreadyLikeYn(user_account, message_id);
+		return new ResponseEntity<>(like_num+","+already_like_yn, HttpStatus.OK);
 	}
+	
+	
 	
 //	@ResponseBody
 //	@GetMapping("/message/likenum/{message_id}")//這樣可能不行?
@@ -49,8 +61,9 @@ public class MessageController {
 	
 	@ResponseBody
 	@GetMapping("/getMessages")//只有用戶自己發的才有刪除案鍵 
-	public ResponseEntity<Object> getMessages(Model model){
-		List<Message> allMessage= messagerepository.getMessageList();
+	public ResponseEntity<Object> getMessages(Model model,HttpSession session){
+		String user_account = (String) session.getAttribute("loginUser");
+		List<Message> allMessage= messagerepository.getMessageList(user_account);
 		//分清楚 何時存到Model 何時回傳ResponseEntity
 		return new ResponseEntity<>(allMessage, HttpStatus.OK);
 	}
