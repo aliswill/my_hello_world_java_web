@@ -92,3 +92,18 @@ body{
 	color:#003C9D;
   	background-color:#fff;
 }
+
+.orange{
+	background-color:#FAEBCE;
+}
+
+
+.non_border_btn{
+	border:none;
+	background-color:transparent; 
+}
+
+.non_border_btn:hover{
+	color:#C78100;
+
+}

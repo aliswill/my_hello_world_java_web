@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.bean.Message;
+import com.example.demo.bean.Sub_message;
 import com.example.demo.repository.MessageLikeRepository;
 import com.example.demo.repository.MessageRepository;
 
@@ -74,11 +75,23 @@ public class MessageController {
 		return "redirect:/ToMessage";
 	}
 	
+	@PostMapping("/addSubMessage/{message_id}")
+	public String addSubMessage(String nickname,String message,HttpSession session,@PathVariable Integer message_id) {
+		messagerepository.addSubMessge(nickname, message, session, message_id);
+		return "redirect:/ToMessage";
+	}
 	
 	@GetMapping("/message/delete/{message_id}")
 	public String deleteMessages(@PathVariable Integer message_id){
 		messagerepository.checkAccount(message_id, null);
 		messagerepository.deleteMessageById(message_id);
 		return "redirect:/ToMessage";
+	}
+	
+	@ResponseBody
+	@GetMapping("/message/getreply/{message_id}")
+	public ResponseEntity<Object> getSubMessages(@PathVariable Integer message_id){
+		List<Sub_message> allMessage = messagerepository.getSubMessageList(message_id);
+		return new ResponseEntity<>(allMessage, HttpStatus.OK);
 	}
 }

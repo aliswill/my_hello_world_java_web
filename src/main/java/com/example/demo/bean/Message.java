@@ -14,13 +14,19 @@ public class Message {
 	private String nick_name;
 	private String user_account;
 	private String message;
-	@JsonFormat(pattern="yyyy-MM-dd hh:mm") //這段
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone = "GMT+8") //這段
 	private Date message_time;//java.util的才能顯示到分鐘
 	private Integer message_id;
 	private Integer like_num;//join來的 資料庫沒有 但沒關係
 	private String like_yn;
-	
+	private Integer sub_message_num;
 
+	public Integer getSub_message_num() {
+		return sub_message_num;
+	}
+	public void setSub_message_num(Integer sub_message_num) {
+		this.sub_message_num = sub_message_num;
+	}
 	public Integer getLike_num() {
 		return like_num;
 	}
