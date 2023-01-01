@@ -41,7 +41,7 @@ public class MessageRepository {
 				+ "				 ,isnull((select count(user_account) from message_like as b where message_id = a.message_id group by message_id),0) as like_num\r\n"
 				+ "				 ,(select count(sub_message_id) from sub_message where message_id = a.message_id) as sub_message_num\r\n"
 				+ "				 ,(select user_account from message_like as b where message_id = a.message_id and user_account = ?)  as like_yn\r\n"
-				+ "		 FROM message as a order by message_id");
+				+ "		 FROM message as a order by message_id desc");
 		RowMapper<Message> rowmapper = new BeanPropertyRowMapper<>(Message.class);
 		List<Message> allMessage = jdbctemplate.query(sql.toString() ,rowmapper,user_account);		
 		return allMessage;
@@ -50,7 +50,7 @@ public class MessageRepository {
 	public List<Sub_message> getSubMessageList(int message_id){
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT  message_id,sub_message_id,nick_name,user_account,message_time ,message\r\n"
-				+ "FROM sub_message where message_id = ? order by sub_message_id");
+				+ "FROM sub_message where message_id = ? order by sub_message_id ");
 		RowMapper<Sub_message> rowmapper = new BeanPropertyRowMapper<>(Sub_message.class);
 		List<Sub_message> allMessage = jdbctemplate.query(sql.toString() ,rowmapper,message_id);		
 		return allMessage;

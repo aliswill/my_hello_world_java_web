@@ -12,9 +12,10 @@
 				var loginUser = sessionStorage.getItem("loginUser");	
 				
 				$(allMessage).each(function(){
-					var message = this;
+					
 					var nick_name = this.nick_name;
 					var message = this.message;
+					//message.replace('\r','<br/>').replace('\n','<br/>');
 					var message_time = this.message_time;
 					//可用tyoeof查看類型 應該都是字串
 					//var time = new Date(message_time);
@@ -34,17 +35,17 @@
 					if(loginUser==user_account){
 						if(loginUser==like_yn){
 							
-							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' " style="color:#C78100;">刪除留言</a><br/><button id="like_act_'+message_id+'" class="like_act non_border_btn">收回讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"><div>');
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' " style="color:#C78100;">刪除留言</a><br/><button id="like_act_'+message_id+'" class="like_act non_border_btn">收回讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');
 						}else{
-							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' " style="color:#C78100;">刪除留言</a><br/><button id="like_act_'+message_id+'" class="like_act non_border_btn">按讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"><div>');
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><a  href="/message/delete/'+message_id+' " style="color:#C78100;">刪除留言</a><br/><button id="like_act_'+message_id+'" class="like_act non_border_btn">按讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');
 						}						
 					}else{
 						if(loginUser==like_yn){
 							
-							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><button id="like_act_'+message_id+'" class="like_act non_border_btn">收回讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"><div>');	
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><button id="like_act_'+message_id+'" class="like_act non_border_btn">收回讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');	
 						}else
 						{
-							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><button id="like_act_'+message_id+'" class="like_act non_border_btn">按讚</button>	<button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"><div>');	
+							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><button id="like_act_'+message_id+'" class="like_act non_border_btn">按讚</button>	<button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');	
 							}													
 					}
 										
@@ -88,16 +89,20 @@
 
 		
 		$("body").on('click','.reply',function(e){
+			
 			var message_id = $(this).parent().attr("id");
 			var url = '/message/getreply/'+message_id;
 			if($("#sub_"+message_id).children().length!=0){
+				
 				$("#sub_"+message_id).empty();
-			}else{			
+			}else{	
+					
 				$.ajax({
 				  type: 'GET',
 				  url: url,
 				  //data: data,
 				  success: function(allMessage){
+					
 					$("#sub_"+message_id).empty();
 					
 						$(allMessage).each(function(){

@@ -71,12 +71,14 @@ public class MessageController {
 	
 	@PostMapping("/addMessage")
 	public String addMessage(String nickname,String message,HttpSession session) {
+		message = message.replace("\r\n", "<br/>").replace("\n", "<br/>");//注意!取代不會直接改變原字串
 		messagerepository.addMessge(nickname, message, session);
 		return "redirect:/ToMessage";
 	}
 	
 	@PostMapping("/addSubMessage/{message_id}")
 	public String addSubMessage(String nickname,String message,HttpSession session,@PathVariable Integer message_id) {
+		message = message.replace("\r\n", "<br/>").replace("\n", "<br/>");
 		messagerepository.addSubMessge(nickname, message, session, message_id);
 		return "redirect:/ToMessage";
 	}
