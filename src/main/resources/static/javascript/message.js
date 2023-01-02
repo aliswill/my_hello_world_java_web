@@ -32,6 +32,31 @@
 					//不會允許不成對標籤，所以無法案預想的順序，若要先鍵一個標籤再以插入父類的方法，因為標籤都是ajax生成，似乎不可行?用live可以嗎?
 					//ajax動態生成的thymeleaf與法似乎不會被解析 th:if="${session.loginUser}== '+message_id+'"
 					
+					if(message.length>100){
+						new_message = message.substr(0,100);
+						
+					}else{
+						new_message = message;
+					}
+
+
+					$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div id="content_'+message_id+'">說到：'+new_message+'</div><button id="getMessage_'+message_id+'" class="getMessage">展開全文</button><a  href="/message/delete/'+message_id+'" style="color:#C78100;">刪除留言</a><br/><button id="like_act_'+message_id+'" class="like_act non_border_btn">收回讚</button><button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');
+					if(loginUser!=user_account){
+						var href_val = '/message/delete/'+message_id;
+						
+						$('a[href$="'+href_val+'"]').remove();//注意 帶變數的屬性選擇器寫法
+						
+					}
+					if(loginUser!=like_yn){
+						$("#like_act_"+message_id).text("按讚");
+					}
+					
+					if(message.length<=100){
+						var id_val = 'getMessage_'+message_id;
+						$("#getMessage_"+message_id).remove();
+					}
+
+					/*
 					if(loginUser==user_account){
 						if(loginUser==like_yn){
 							
@@ -48,7 +73,7 @@
 							$("#message_board").append('<div id="'+message_id+'"><div>暱稱 '+nick_name+'</div><div>發表於　'+message_time+'</div><div>說到：'+message+'</div><button id="like_act_'+message_id+'" class="like_act non_border_btn">按讚</button>	<button id="reply_'+message_id+'" class="reply non_border_btn">回覆('+sub_message_num+')</button><span id="like_'+message_id+'">讚:'+like_num+'</span></div><div id="sub_'+message_id+'"></div>');	
 							}													
 					}
-										
+					*/					
 					$('#'+message_id).wrap('<div class="StraightMylayoutSon"></div>');
 					
 					//$("#message_board").append('<p class="a">哈哈</p>');
@@ -86,6 +111,55 @@
 			});
 		})
 		
+		//展開全文
+		$("body").on('click','.getMessage',function(e){
+			var message_id = $(this).parent().attr("id");
+			
+			var url = '/getMessage/'+message_id;
+			
+			$.ajax({
+			  type: 'GET',
+			  url: url,
+			  //data: data,
+			  success: function(result){
+				var message = result.message;
+				var message_id = result.message_id;
+				
+				$('#content_'+message_id).html(message);
+				$('#'+message_id+' > .getMessage').text('收合');
+				
+				$('#'+message_id+' > .getMessage').addClass('getshortMessage');//去做一個收合的方法 
+				$('#'+message_id+' > .getMessage').removeClass('getMessage');
+
+			},
+			 
+			});
+		})
+		
+		$("body").on('click','.getshortMessage',function(e){
+			var message_id = $(this).parent().attr("id");
+			
+			var url = '/getMessage/'+message_id;
+			
+			$.ajax({
+			  type: 'GET',
+			  url: url,
+			  //data: data,
+			  success: function(result){
+				var message = result.message;
+				message = message.substr(0,100);
+				var message_id = result.message_id;
+				
+				$('#content_'+message_id).html(message);
+				$('#'+message_id+' > .getshortMessage').text('展開全文');
+				
+				$('#'+message_id+' > .getshortMessage').addClass('getMessage');
+				$('#'+message_id+' > .getshortMessage').removeClass('getshortMessage');
+
+			},
+			 
+			});
+		})
 
 		
 		$("body").on('click','.reply',function(e){

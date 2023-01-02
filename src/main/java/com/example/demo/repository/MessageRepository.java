@@ -46,6 +46,16 @@ public class MessageRepository {
 		List<Message> allMessage = jdbctemplate.query(sql.toString() ,rowmapper,user_account);		
 		return allMessage;
 	}
+	
+	//查詢單一貼文 針對展開文章可使用
+	public Message getMessage(int message_id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("  SELECT nick_name,user_account,message,message_time,message_id from message where message_id =?");
+		RowMapper<Message> rowmapper = new BeanPropertyRowMapper<>(Message.class);
+		Message message = jdbctemplate.queryForObject(sql.toString() ,rowmapper,message_id);	
+		return message;
+	}
+	
 	//取得子留言
 	public List<Sub_message> getSubMessageList(int message_id){
 		StringBuilder sql = new StringBuilder();

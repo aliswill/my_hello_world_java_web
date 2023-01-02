@@ -69,6 +69,14 @@ public class MessageController {
 		return new ResponseEntity<>(allMessage, HttpStatus.OK);
 	}
 	
+	@ResponseBody
+	@GetMapping("/getMessage/{message_id}")
+	public ResponseEntity<Object> getMessage(@PathVariable Integer message_id){
+		
+		Message message = messagerepository.getMessage(message_id);
+		return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	
 	@PostMapping("/addMessage")
 	public String addMessage(String nickname,String message,HttpSession session) {
 		message = message.replace("\r\n", "<br/>").replace("\n", "<br/>");//注意!取代不會直接改變原字串
