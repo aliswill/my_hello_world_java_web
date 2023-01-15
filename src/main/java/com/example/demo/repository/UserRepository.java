@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
+import javax.annotation.processing.SupportedSourceVersion;
 import javax.sql.DataSource;
 
 import org.springframework.dao.DataAccessException;
@@ -57,7 +58,7 @@ public class UserRepository {
 	
 	public boolean checkAcPd(String useraccount, String userpassword) {//登入時檢查帳號密碼
 		StringBuilder sql = new StringBuilder();
-		sql.append("select * from [sunny_database].[dbo].[user] where useraccount = ? and userpassword = ?");
+		sql.append("select * from  [sunny_database].[dbo].[user] where useraccount = ? and userpassword = ?");
 		RowMapper<User> rowmapper = new BeanPropertyRowMapper<>(User.class);	
 		User user = myjdbctemplate.queryForObject(sql.toString(), rowmapper, useraccount,userpassword);
 		if(user!=null) { //嘗試用自己的myjdbctemplate解決查尋不到會拋例外的情況
@@ -67,7 +68,7 @@ public class UserRepository {
 			System.out.println("帳號或密碼錯誤");
 			return false;
 		}
-//		try {
+//		try {                           
 //			//查不到會拋例外 而不是回傳null
 //			User user = jdbctemplate.queryForObject(sql.toString(), rowmapper, useraccount,userpassword);
 //		}catch(DataAccessException e) {
@@ -77,5 +78,21 @@ public class UserRepository {
 //		System.out.println("帳號密碼存在");
 //		return true;
 
+	}
+	
+	public String getHeadUrl(String useraccount) {
+		String HeadUrl;
+		StringBuilder sql = new StringBuilder();
+		sql.append("select head from  [sunny_database].[dbo].[user] where useraccount = ? ");
+		RowMapper<String> rowmapper = new BeanPropertyRowMapper<>(String.class);	
+		//錯誤原因不明 String HeadUrl = myjdbctemplate.queryForObject(sql.toString(), rowmapper, useraccount);
+		//String HeadUrl = jdbctemplate.queryForObject(sql.toString(), String.class, new Object[] {useraccount});
+		//jdbctemplate.queryForObject(sql.toString(),new Object[] {useraccount},rowmapper);
+		try {
+		HeadUrl = jdbctemplate.queryForObject(sql.toString(),String.class,useraccount);
+		}catch(Exception e) {
+			return null;
+		}
+		return HeadUrl;
 	}
 }

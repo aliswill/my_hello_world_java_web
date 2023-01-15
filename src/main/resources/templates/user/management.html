@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:insert="~{head::myhead}"></head>
+</head>
+<div th:insert="~{head::myscript}"></div>
+<!--<script type="text/javascript" language="JavaScript" src="/javascript/emp.js"></script>-->
+    <!--href前面有一槓帶表決對路徑，從網站根目錄開始，否則是相對路徑，會變成http://localhost:8080/emp/css/main.css，所以導入th:replace還是要導cs? -->
+    
+	<nav th:replace="~{main::top_nav}"></nav>
+	<body>
+		<div>
+		<!-- 參考 https://blog.csdn.net/qq_32106647/article/details/80519262 -->
+			<h3>頭像</h3>
+			<form action="" method="post" enctype="multipart/form-data">
+					<input type="file" name="uploadhead" multiple required="required" />
+					<input type="submit" value="上傳頭像"/>
+			</form>
+			
+			<img th:src="@{/user/showHead}" width="200" height="200">
+		</div>
+	</body>
+</html>

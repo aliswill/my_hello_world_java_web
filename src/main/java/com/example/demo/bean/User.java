@@ -8,18 +8,27 @@ public class User {
 	private String userpassword;
 	private String email;
 	private String access_level;
-	
+	private String head;
 		
 	public User() {
 		super();
 	}
 	
-	public User(String useraccount, String userpassword, String email, String access_level) {
+	public String getHead() {
+		return head;
+	}
+
+	public void setHead(String head) {
+		this.head = head;
+	}
+
+	public User(String useraccount, String userpassword, String email, String access_level, String head) {
 		super();
 		this.useraccount = useraccount;
 		this.userpassword = userpassword;
 		this.email = email;
 		this.access_level = access_level;
+		this.head = head;
 	}
 	public String getUseraccount() {
 		return useraccount;

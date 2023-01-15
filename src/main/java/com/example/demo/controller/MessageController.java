@@ -33,6 +33,11 @@ public class MessageController {
 		return "/message/message_list";
 	}
 	
+	@GetMapping("/publish")
+	public String publish() {
+		return "/message/publish_message";
+	}
+	
 //	@GetMapping("/message/like/{message_id}")
 //	public String changeLike(HttpSession session,@PathVariable String message_id) {
 //		String user_account = (String) session.getAttribute("loginUser");
